@@ -10,6 +10,7 @@ namespace Interactive_Fiction___First_Playable
     {
         static int pageNumber = 1;
         static string storyTitle = "The Time Machine";
+        static bool stillReadingBook = true;
         static void Main(string[] args)
         {
             StartGame();
@@ -17,8 +18,16 @@ namespace Interactive_Fiction___First_Playable
             {
                 PickPlot();
                 MakeYourChoice();
+                if (!stillReadingBook)
+                {
+                    break;
+                }
                 WaitForDecision();
             }
+            Console.WriteLine();
+            Console.WriteLine("You've reached the end, friend.");
+            Console.WriteLine();
+            Console.ReadKey();
         }
 
         static void StartGame()
@@ -65,19 +74,36 @@ namespace Interactive_Fiction___First_Playable
                 case 1:
                     Console.WriteLine("You live in the middle of a forest with your wife and two children. You built a house that kept your family warm in Winter, a well that supplied you with clean water and a hunting tower to bring fresh meat. You're cooking the deer you hunted today when you see glowing eyes peering in the moonlight.");
                     break;
+                case 2:
+                    Console.WriteLine("You tiptoe. The eyes vanish and you see a glimpse of the body.");
+                    break;
+                case 3:
+                    Console.WriteLine("You dash left into the kitchen and look out the window. You see it now, it's a wolf.");
+                    break;
             }
         }
 
         static void MakeYourChoice()
         {
-            Console.WriteLine();
-            Console.WriteLine("MAKE YOUR CHOICE:");
-            Console.WriteLine();
             switch (pageNumber)
             {
                 case 1:
+                    Console.WriteLine();
+                    Console.WriteLine("MAKE YOUR CHOICE:");
+                    Console.WriteLine();
                     Console.WriteLine("A - You take a few steps closer... - Go to Page 2");
                     Console.WriteLine("B - You run into the house and lock the front door. - Go to Page 3");
+                    break;
+                case 2:
+                    Console.WriteLine();
+                    Console.WriteLine("MAKE YOUR CHOICE:");
+                    Console.WriteLine();
+                    Console.WriteLine("A - You chase the figure. - Go to Page 10");
+                    Console.WriteLine("B - You pretend like you never saw anything. - Go to Page 27");
+                    break;
+                case 3:
+                    Console.WriteLine("You reassure your family that everything is alright and you all go to bed feeling safe from the dangers of the outside world.");
+                    stillReadingBook = false;
                     break;
             }
         }
@@ -100,7 +126,20 @@ namespace Interactive_Fiction___First_Playable
                             break;
                     }
                     break;
+                case 2:
+                    var key2 = Console.ReadKey().Key;
+                    switch (key2)
+                    {
+                        case ConsoleKey.A:
+                            pageNumber = 10;
+                            break;
+                        case ConsoleKey.B:
+                            pageNumber = 27;
+                            break;
+                    }
+                    break;
             }
+            Console.WriteLine();
             Console.WriteLine();
         }
     }
