@@ -64,6 +64,7 @@ namespace Interactive_Fiction___First_Playable
             Console.Clear();
             Console.WriteLine("Interactive Fiction - First Playable project");
             Console.WriteLine("____________________________________________");
+            Console.WriteLine();
             Console.WriteLine("- Campus: NSCC Truro Campus");
             Console.WriteLine("- Program: Game Development (Common / No Concentration)");
             Console.WriteLine("- Course: Logic and Programming I");
@@ -79,16 +80,20 @@ namespace Interactive_Fiction___First_Playable
             Console.WriteLine("A - New Game");
             Console.WriteLine();
             Console.Write("> ");
-            var key = Console.ReadKey().Key;
-            if (key == ConsoleKey.A)
+            while (true)
             {
-                Console.Clear();
-                Console.WriteLine("New Game!");
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("PAGE " + pageNumber.ToString() + ":");
-                Console.WriteLine();
-                Console.ForegroundColor = ConsoleColor.White;
+                ConsoleKeyInfo info = Console.ReadKey();
+                if (info.Key == ConsoleKey.A)
+                {
+                    Console.Clear();
+                    Console.WriteLine("New Game!");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("PAGE " + pageNumber.ToString() + ":");
+                    Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.White;
+                    break;
+                }
             }
         }
 
